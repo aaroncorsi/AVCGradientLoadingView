@@ -21,8 +21,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Tap to simulate completion of loading
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissLoadingView))
+        self.loadingView.addGestureRecognizer(tapRecognizer)
         
+        // Simulate completion of loading with a timer
+//        _ = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { (timer) in
+//            self.loadingView.dismiss()
+//        }
+    }
+    
+    @objc func dismissLoadingView() {
+        self.loadingView.dismiss()
     }
 
     override func didReceiveMemoryWarning() {

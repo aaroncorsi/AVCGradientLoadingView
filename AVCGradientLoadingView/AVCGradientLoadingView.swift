@@ -11,18 +11,24 @@ import UIKit
 class AVCGradientLoadingView: UIView {
     private let gradientBackgroundLayer = CAGradientLayer()
     private let imageMaskView = UIImageView()
+    private let gradientAnimationKey = "animate_gradient"
     
-    var imageMask: UIImage = #imageLiteral(resourceName: "HandNoIcon") {
+    @IBInspectable var animationSpeed: Double = 2 {
+        didSet {
+            self.updateAnimation()
+        }
+    }
+    @IBInspectable var imageMask: UIImage = #imageLiteral(resourceName: "AaronCorsi_logo") {
         didSet {
             self.imageMaskView.image = imageMask
         }
     }
-    var gradientStartColor: UIColor = UIColor(hue: 22/360, saturation: 1, brightness: 1, alpha: 1) {
+    @IBInspectable var gradientStartColor: UIColor = UIColor(hue: 22/360, saturation: 1, brightness: 1, alpha: 1) {
         didSet {
             self.updateGradientColors()
         }
     }
-    var gradientEndColor: UIColor = UIColor(hue: 304/360, saturation: 1, brightness: 1, alpha: 1) {
+    @IBInspectable var gradientEndColor: UIColor = UIColor(hue: 304/360, saturation: 1, brightness: 1, alpha: 1) {
         didSet {
             self.updateGradientColors()
         }
@@ -39,12 +45,7 @@ class AVCGradientLoadingView: UIView {
         self.layer.addSublayer(gradientBackgroundLayer)
         
         // Set up animation
-        let animation = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.position))
-        animation.fromValue = self.gradientBackgroundLayer.position
-        animation.toValue = CGPoint(x: self.gradientBackgroundLayer.position.x + self.bounds.width * 2, y: self.gradientBackgroundLayer.position.y)
-        animation.repeatCount = Float.greatestFiniteMagnitude
-        animation.duration = 2
-        self.gradientBackgroundLayer.add(animation, forKey: "translate_background")
+        self.updateAnimation()
         
         // Set up mask
         self.imageMaskView.frame = self.bounds
@@ -56,7 +57,26 @@ class AVCGradientLoadingView: UIView {
         self.gradientBackgroundLayer.colors = [gradientStartColor.cgColor, gradientEndColor.cgColor, gradientStartColor.cgColor, gradientEndColor.cgColor, gradientStartColor.cgColor]
     }
     
+    func updateAnimation() {
+        self.gradientBackgroundLayer.removeAnimation(forKey: self.gradientAnimationKey)
+        let animation = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.position))
+        animation.fromValue = self.gradientBackgroundLayer.position
+        animation.toValue = CGPoint(x: self.gradientBackgroundLayer.position.x + self.bounds.width * 2, y: self.gradientBackgroundLayer.position.y)
+        animation.repeatCount = Float.greatestFiniteMagnitude
+        animation.duration = self.animationSpeed
+        self.gradientBackgroundLayer.add(animation, forKey: self.gradientAnimationKey)
+    }
+    
     func dismiss() {
-        // To be implemented later
+        UIView.animate(withDuration: 0.1, animations: {
+            self.transform = self.transform.scaledBy(x: 1.1, y: 1.1)
+        }) { (finished) in
+            if finished {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.transform = self.transform.scaledBy(x: 0.01, y: 0.01)
+                    self.alpha = 0
+                }, completion: nil)
+            }
+        }
     }
 }
