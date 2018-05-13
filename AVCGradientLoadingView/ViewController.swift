@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Tap to simulate completion of loading
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissLoadingView))
-        self.loadingView.addGestureRecognizer(tapRecognizer)
+        self.view.addGestureRecognizer(tapRecognizer)
         
         // Simulate completion of loading with a timer
 //        _ = Timer.scheduledTimer(withTimeInterval: 10, repeats: false) { (timer) in
@@ -31,8 +31,17 @@ class ViewController: UIViewController {
 //        }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     @objc func dismissLoadingView() {
-        self.loadingView.dismiss()
+        // Dismiss the current loading view
+        self.loadingView.dismiss { (finished) in
+            if finished {
+                self.loadingView.removeFromSuperview()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

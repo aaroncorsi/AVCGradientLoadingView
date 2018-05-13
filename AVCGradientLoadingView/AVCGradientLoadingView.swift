@@ -13,6 +13,7 @@ class AVCGradientLoadingView: UIView {
     private let imageMaskView = UIImageView()
     private let gradientAnimationKey = "animate_gradient"
     
+    @IBInspectable var spinOnDismiss: Bool = true
     @IBInspectable var animationSpeed: Double = 2 {
         didSet {
             self.updateAnimation()
@@ -67,15 +68,27 @@ class AVCGradientLoadingView: UIView {
         self.gradientBackgroundLayer.add(animation, forKey: self.gradientAnimationKey)
     }
     
-    func dismiss() {
+    func dismiss(completion: @escaping (_ finished: Bool) -> Void) {
         UIView.animate(withDuration: 0.1, animations: {
-            self.transform = self.transform.scaledBy(x: 1.1, y: 1.1)
+            var newTransform = self.transform
+            newTransform = newTransform.scaledBy(x: 1.1, y: 1.1)
+            if self.spinOnDismiss {
+                newTransform = newTransform.rotated(by: CGFloat(-10.0 * (Double.pi / 180)))
+            }
+            self.transform = newTransform
         }) { (finished) in
             if finished {
                 UIView.animate(withDuration: 0.2, animations: {
-                    self.transform = self.transform.scaledBy(x: 0.01, y: 0.01)
+                    var newTransform = self.transform
+                    newTransform = newTransform.scaledBy(x: 0.01, y: 0.01)
+                    if self.spinOnDismiss {
+                        newTransform = newTransform.rotated(by: CGFloat(180.0 * (Double.pi / 180)))
+                    }
+                    self.transform = newTransform
                     self.alpha = 0
-                }, completion: nil)
+                }, completion: { (finished) in
+                    completion(finished)
+                })
             }
         }
     }
