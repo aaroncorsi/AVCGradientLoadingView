@@ -55,4 +55,8 @@ class AVCGradientLoadingView: UIView {
     func updateGradientColors() {
         self.gradientBackgroundLayer.colors = [gradientStartColor.cgColor, gradientEndColor.cgColor, gradientStartColor.cgColor, gradientEndColor.cgColor, gradientStartColor.cgColor]
     }
+    
+    func dismiss() {
+        // To be implemented later
+    }
 }
