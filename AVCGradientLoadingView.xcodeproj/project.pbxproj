@@ -12,6 +12,7 @@
 		8FD234BF20A5DAC700F90C11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD234BD20A5DAC700F90C11 /* Main.storyboard */; };
 		8FD234C120A5DAC900F90C11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD234C020A5DAC900F90C11 /* Assets.xcassets */; };
 		8FD234C420A5DAC900F90C11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD234C220A5DAC900F90C11 /* LaunchScreen.storyboard */; };
+		8FD234CC20A5E47500F90C11 /* AVCGradientLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD234CB20A5E47500F90C11 /* AVCGradientLoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		8FD234C020A5DAC900F90C11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8FD234C320A5DAC900F90C11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8FD234C520A5DAC900F90C11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FD234CB20A5E47500F90C11 /* AVCGradientLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVCGradientLoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				8FD234B920A5DAC700F90C11 /* AppDelegate.swift */,
 				8FD234BB20A5DAC700F90C11 /* ViewController.swift */,
+				8FD234CB20A5E47500F90C11 /* AVCGradientLoadingView.swift */,
 				8FD234BD20A5DAC700F90C11 /* Main.storyboard */,
 				8FD234C020A5DAC900F90C11 /* Assets.xcassets */,
 				8FD234C220A5DAC900F90C11 /* LaunchScreen.storyboard */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FD234CC20A5E47500F90C11 /* AVCGradientLoadingView.swift in Sources */,
 				8FD234BC20A5DAC700F90C11 /* ViewController.swift in Sources */,
 				8FD234BA20A5DAC700F90C11 /* AppDelegate.swift in Sources */,
 			);
