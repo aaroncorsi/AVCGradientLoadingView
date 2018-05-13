@@ -35,9 +35,17 @@ class AVCGradientLoadingView: UIView {
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.setup()
+    }
+    
+    func setup() {
         // Set up gradient background
         self.gradientBackgroundLayer.frame = CGRect(x: -self.bounds.width * 2.5, y: 0, width: self.bounds.width * 4, height: self.bounds.height)
         self.updateGradientColors()

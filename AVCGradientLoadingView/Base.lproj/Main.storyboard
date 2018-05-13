@@ -25,6 +25,9 @@
                                     <constraint firstAttribute="width" constant="240" id="DAX-vK-W2G"/>
                                     <constraint firstAttribute="height" constant="240" id="I4k-0B-69j"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="imageMask" value="HandNoIcon"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -43,4 +46,7 @@
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="HandNoIcon" width="244" height="244"/>
+    </resources>
 </document>
